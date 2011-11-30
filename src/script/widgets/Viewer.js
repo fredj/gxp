@@ -192,11 +192,19 @@ gxp.Viewer = Ext.extend(Ext.util.Observable, {
         this.addEvents(
             /** api: event[ready]
              *  Fires when application is ready for user interaction.
+             *
+             *  Listeners arguments:
+             *
+             *  * viewer - ``gxp.Viewer`` this viewer.
              */
             "ready",
             
             /** api: event[portalready]
              *  Fires after the portal is initialized.
+             *
+             *  Listeners arguments:
+             *
+             *  * viewer - ``gxp.Viewer`` this viewer.
              */
             "portalready",
 
@@ -226,6 +234,7 @@ gxp.Viewer = Ext.extend(Ext.util.Observable, {
              *  Fired when features were edited.
              *
              *  Listener arguments:
+             *
              *  * featureManager - ``gxp.plugins.FeatureManager`` the
              *    the feature manager that was used for editing
              *  * layer - ``Object`` object with name and source of the layer
@@ -476,7 +485,7 @@ gxp.Viewer = Ext.extend(Ext.util.Observable, {
             }
         }), config.renderTo ? "panel" : "viewport");
         
-        this.fireEvent("portalready");
+        this.fireEvent("portalready", this);
     },
     
     activate: function() {
@@ -490,7 +499,7 @@ gxp.Viewer = Ext.extend(Ext.util.Observable, {
         this.checkLayerRecordQueue();
         
         // broadcast ready state
-        this.fireEvent("ready");
+        this.fireEvent("ready", this);
     },
     
     addLayers: function() {
